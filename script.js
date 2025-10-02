@@ -114,7 +114,14 @@ function getLocation() {
 
 const grantAccessButton = document.querySelector("[data-grant-access]");
 grantAccessButton.addEventListener('click', getLocation());
-
+function showPosition(position) {
+    const userCoordinates = {
+        lat: position.coords.latitude,
+        lon: position.coords.longitude
+    }
+    sessionStorage.setItem("user-coordinates", JSON.stringify(userCoordinates));
+    fetchUserWeatherInfo(userCoordinates);
+}
 
 const serachInput = document.querySelector("[data-searchInput]");
 searchForm.addEventListener("submit", (e) => {
